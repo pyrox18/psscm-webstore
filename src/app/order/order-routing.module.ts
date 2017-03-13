@@ -1,0 +1,40 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { OrderComponent } from './order.component';
+import { OrderSelectComponent } from './order-select/order-select.component';
+import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
+import { OrderSuccessComponent } from './order-success/order-success.component';
+
+const routes: Routes = [
+  {
+    path: 'order',
+    component: OrderComponent,
+    children: [
+      {
+        path: 'select',
+        component: OrderSelectComponent
+      },
+      {
+        path: 'confirm',
+        component: OrderConfirmComponent
+      },
+      {
+        path: 'success',
+        component: OrderSuccessComponent
+      },
+      {
+        path: '',
+        redirectTo: 'select',
+        pathMatch: 'full'
+      }
+    ]
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+  providers: []
+})
+export class OrderRoutingModule { }

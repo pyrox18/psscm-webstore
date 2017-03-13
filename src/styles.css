@@ -1,1 +1,97 @@
 /* You can add global styles to this file, and also import other style files */
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.header {
+  height: 150px;
+  margin: 20px 0px 20px;
+}
+
+img.logo {
+  height: 150px;
+  width: 150px;
+  float: left;
+}
+
+.header-text {
+  padding-top: 10px;
+  padding-left: 170px;
+}
+
+.header-text > h1 {
+  font-size: 48px;
+}
+
+.header-text > p {
+  position: relative;
+  left: 2px;
+}
+
+.content {
+  margin-top: 20px;
+}
+
+.main-area {
+  margin-top: 20px;
+}
+
+td span {
+  display: table;
+  margin: 0 auto;
+}
+
+.inline-btn-right {
+  float: right;
+}
+
+.inline-btn-right * {
+  display: inline;
+}
+
+.order-data, .payment-proof {
+  margin-bottom: 20px;
+}
+
+.order-data th {
+  padding-right: 20px;
+}
+
+.inline {
+  display: inline;
+}
+
+.stage-status {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  font-size: 24px;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.stage-status > p {
+  padding-bottom: 1em;
+  font-size: 20px;
+}
+
+.stage-status > p > span {
+  font-size: 24px;
+  font-weight: normal;
+  margin-right: 50px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #ffffff;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
