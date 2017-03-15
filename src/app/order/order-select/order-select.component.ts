@@ -13,7 +13,6 @@ import { OrderItem } from '../../order-item';
 })
 export class OrderSelectComponent implements OnInit {
 
-  catalog: any[][] = [];
   categoryCodes: any[] = [];
   catalogMap: Map<any, any> = new Map;
   cart: OrderItem[] = [];
