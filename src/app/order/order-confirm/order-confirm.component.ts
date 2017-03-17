@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { CartService } from '../../cart.service';
+
+import { OrderItem } from '../../order-item';
+
 @Component({
   selector: 'order-confirm',
   templateUrl: './order-confirm.component.html',
@@ -9,13 +13,20 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class OrderConfirmComponent implements OnInit {
 
+  cart: OrderItem[];
+  totalBv: number = 0;
+  totalPrice: number = 0.00;
+
   constructor(
     private location: Location,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cartService: CartService
   ) { }
 
   ngOnInit() {
+    this.getCartInMemory("testUser");
+    this.updateTotals();
   }
 
   goBack(): void {
@@ -24,6 +35,28 @@ export class OrderConfirmComponent implements OnInit {
 
   confirmOrder(): void {
     this.router.navigate(['../success'], { relativeTo: this.route });
+  }
+
+  updateTotals(): void {
+    let totalBv = 0;
+    let totalPrice = 0;
+    for (let item of this.cart) {
+      if (item.productCode != null) {
+        totalBv += item.bv * item.quantity;
+        totalPrice += item.price * item.quantity;
+      }
+    }
+    this.totalBv = totalBv;
+    this.totalPrice = totalPrice;
+  }
+
+  getCartInMemory(user: string): void {
+    this.cartService.getCart(user)
+      .subscribe(
+        cart => this.cart = cart,
+        error => console.log("Cart retrieval failed. Error: " + error)
+      )
+      .unsubscribe();
   }
 
 }

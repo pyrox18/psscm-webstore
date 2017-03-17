@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { Observable } from 'rxjs/Observable';
+
 import { CatalogService } from '../../catalog.service';
+import { CartService } from '../../cart.service';
 
 import { OrderItem } from '../../order-item';
 
@@ -16,18 +19,24 @@ export class OrderSelectComponent implements OnInit {
   categoryCodes: any[] = [];
   catalogMap: Map<any, any> = new Map;
   cart: OrderItem[] = [];
+  catalogLoaded: boolean = false;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private catalogService: CatalogService
+    private catalogService: CatalogService,
+    private cartService: CartService
   ) { }
 
   ngOnInit() {
     this.getCatalog();
+    this.getCartInMemory("testUser");
   }
 
   onSubmit(): void {
+    //TODO: Check for null-ish values in cart before setting
+    // (or just refactor how items are inserted to fix this)
+    this.cartService.setCart(this.cart);
     this.router.navigate(['../confirm'], { relativeTo: this.route });
   }
 
@@ -37,6 +46,7 @@ export class OrderSelectComponent implements OnInit {
         catalog => {
           this.extractCategoryCodes(catalog);
           this.buildCatalog(catalog, this.categoryCodes);
+          this.catalogLoaded = true;
         },
         err => console.error(err)
       );
@@ -77,7 +87,7 @@ export class OrderSelectComponent implements OnInit {
   }
 
   updateCart(): void {
-    if (this.cart.length > 0) {
+    if (this.catalogLoaded && this.cart.length > 0) {
       for (let item of this.cart) {
         if (item.categoryCode != null) {
           let catItems = this.catalogMap.get(item.categoryCode);
@@ -117,6 +127,15 @@ export class OrderSelectComponent implements OnInit {
 
   removeFromCart(i: number): void {
     this.cart.splice(i, 1);
+  }
+
+  getCartInMemory(user: string): void {
+    this.cartService.getCart(user)
+      .subscribe(
+        cart => this.cart = cart,
+        error => console.error("Cart retrieval failed. Error: " + error)
+      )
+      .unsubscribe();
   }
 
 }
