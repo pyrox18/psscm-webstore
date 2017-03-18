@@ -4,9 +4,9 @@
   <br>
   <div class="col-md-10">
     <cart-table [cart]="cart" (removeItem)="removeFromCart($event)"></cart-table>
-    <a role="button" class="btn btn-default pull-right" (click)="onSubmit()">
+    <button class="btn btn-default pull-right" (click)="onSubmit()" [disabled]="cart.length < 1">
       <span class="glyphicon glyphicon-circle-arrow-right"></span> Teruskan
-    </a>
+    </button>
   </div>
   <div class="col-md-2">
     <form (ngSubmit)="addItemToCart()" #itemForm="ngForm">
