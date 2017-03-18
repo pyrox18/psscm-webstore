@@ -9,7 +9,7 @@
       <th>Bilangan</th>
       <th>Jumlah BV</th>
       <th>Jumlah Harga (RM)</th>
-      <th></th>
+      <th *ngIf="!disableDelete"></th>
     </tr>
   </thead>
   <tbody>
@@ -22,7 +22,7 @@
       <td>{{item.quantity}}</td>
       <td>{{item.bv * item.quantity | number:'1.0-0'}}</td>
       <td>{{item.price * item.quantity | number:'1.2-2'}}</td>
-      <td>
+      <td *ngIf="!disableDelete">
         <a role="button" (click)="delete(i)">
           <span class="glyphicon glyphicon-remove"></span>
         </a>
@@ -43,7 +43,7 @@
       <td>
         <p class="form-control-static">{{totalPrice | number:'1.2-2'}}</p>
       </td>
-      <td></td>
+      <td *ngIf="!disableDelete"></td>
     </tr>
   </tfoot>
 </table>

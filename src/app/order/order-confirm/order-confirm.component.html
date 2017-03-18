@@ -1,41 +1,7 @@
 <h3>Langkah 2: Pengesahan</h3>
 <h5>Sila pastikan bahawa produk-produk berikut adalah produk yang ingin anda pesan untuk pembelian.</h5>
 <br>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Kod Kategori</th>
-      <th>Kod Produk</th>
-      <th>Nama Produk</th>
-      <th>BV</th>
-      <th>Harga (RM)</th>
-      <th>Bilangan</th>
-      <th>Jumlah BV</th>
-      <th>Jumlah Harga (RM)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of cart">
-      <td>{{item.categoryCode}}</td>
-      <td>{{item.productCode}}</td>
-      <td>{{item.productName}}</td>
-      <td>{{item.bv | number:'1.0-0'}}</td>
-      <td>{{item.price | number:'1.2-2'}}</td>
-      <td>{{item.quantity}}</td>
-      <td>{{item.quantity * item.bv | number:'1.0-0'}}</td>
-      <td>{{item.quantity * item.price | number:'1.2-2'}}</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <th colspan="6">
-        <p class="pull-right">Jumlah Keseluruhan</p>
-      </th>
-      <td>{{totalBv | number:'1.0-0'}}</td>
-      <td>{{totalPrice | number:'1.2-2'}}</td>
-    </tr>
-  </tfoot>
-</table>
+<cart-table [cart]="cart" [disableDelete]="true"></cart-table>
 <p>Adakah anda pasti dengan pesanan ini? Klik "Sahkan Pesanan" untuk meletakkan pesanan atau "Kembali" untuk mengubahsuai pesanan
   anda.</p>
 <div class="inline-btn-right">

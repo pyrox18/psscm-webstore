@@ -9,6 +9,7 @@ import { OrderItem } from '../order-item';
 export class CartTableComponent implements OnChanges {
 
   @Input() cart: OrderItem[];
+  @Input() disableDelete: boolean = false;
   @Output() removeItem: EventEmitter<any> = new EventEmitter<any>();
 
   totalBv: number = 0;
