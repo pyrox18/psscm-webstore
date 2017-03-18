@@ -19,7 +19,7 @@ export class OrderSelectComponent implements OnInit {
   categoryCodes: any[] = [];
   catalogMap: Map<any, any> = new Map;
   cart: OrderItem[] = [];
-  catalogLoaded: boolean = false;
+  item: OrderItem = new OrderItem();
 
   constructor(
     private router: Router,
@@ -31,6 +31,7 @@ export class OrderSelectComponent implements OnInit {
   ngOnInit() {
     this.getCatalog();
     this.getCartInMemory("testUser");
+    this.item.quantity = 1;
   }
 
   onSubmit(): void {
@@ -46,7 +47,6 @@ export class OrderSelectComponent implements OnInit {
         catalog => {
           this.extractCategoryCodes(catalog);
           this.buildCatalog(catalog, this.categoryCodes);
-          this.catalogLoaded = true;
         },
         err => console.error(err)
       );
@@ -82,51 +82,9 @@ export class OrderSelectComponent implements OnInit {
     }
   }
 
-  pushNewItem(): void {
-    this.cart.push(new OrderItem());
-  }
-
-  updateCart(): void {
-    if (this.catalogLoaded && this.cart.length > 0) {
-      for (let item of this.cart) {
-        if (item.categoryCode != null) {
-          let catItems = this.catalogMap.get(item.categoryCode);
-          if (catItems === undefined) {
-            console.error("No items found for category");
-          }
-          else {
-            let itemIsInCategory: boolean = (item.productCode == null);
-            if (!itemIsInCategory) {
-              for (let i of catItems) {
-                if (item.productCode == i.pcode) {
-                  itemIsInCategory = true;
-                  break;
-                }
-              }
-            }
-            if (!itemIsInCategory) {
-              item.productCode = catItems[0].pcode;
-            }
-          }
-
-          for (let i of catItems) {
-            if (item.productCode == i.pcode) {
-              item.productName = i.name;
-              item.bv = i.bv;
-              item.price = i.price;
-              if (item.quantity == null) {
-                item.quantity = 1;
-              }
-              break;
-            }
-          }
-        }
-      }
-    }
-  }
-
   removeFromCart(i: number): void {
     this.cart.splice(i, 1);
+    this.cart = this.cart.slice(); // cd workaround
   }
 
   getCartInMemory(user: string): void {
@@ -136,6 +94,36 @@ export class OrderSelectComponent implements OnInit {
         error => console.error("Cart retrieval failed. Error: " + error)
       )
       .unsubscribe();
+  }
+
+  categoryCodeChanged(): void {
+    this.item.productCode = null;
+  }
+
+  productCodeChanged(): void {
+    let itemFound = false;
+    let catalogItems = this.catalogMap.get(this.item.categoryCode);
+    for (let i of catalogItems) {
+      if (this.item.productCode == i.pcode) {
+        this.item.productName = i.name;
+        this.item.bv = i.bv;
+        this.item.price = i.price;
+        itemFound = true;
+        break;
+      }
+    }
+    if (!itemFound) {
+      this.item.productName = "";
+      this.item.bv = 0;
+      this.item.price = 0.00;
+    }
+  }
+
+  addItemToCart(): void {
+    this.cart.push(this.item);
+    this.item = new OrderItem();
+    this.item.quantity = 1;
+    this.cart = this.cart.slice(); // cd workaround
   }
 
 }

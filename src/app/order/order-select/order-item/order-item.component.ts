@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, DoCheck } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { OrderItem } from '../../../order-item';
 
 @Component({
@@ -6,25 +6,16 @@ import { OrderItem } from '../../../order-item';
   templateUrl: './order-item.component.html',
   styleUrls: ['./order-item.component.css']
 })
-export class OrderItemComponent implements DoCheck {
+export class OrderItemComponent implements OnChanges {
 
-  @Input() categoryCodes: any[];
-  @Input() catalogMap: Map<any, any>;
   @Input() cart: OrderItem[];
-  @Output() addItem: EventEmitter<any> = new EventEmitter<any>();
   @Output() removeItem: EventEmitter<any> = new EventEmitter<any>();
-  @Output() cartModified: EventEmitter<any> = new EventEmitter<any>();
 
   totalBv: number = 0;
   totalPrice: number = 0.00;
 
-  ngDoCheck() {
-    this.cartModified.emit();
+  ngOnChanges() {
     this.updateTotals();
-  }
-
-  pushNewItem(): void {
-    this.addItem.emit();
   }
 
   delete(i: number): void {

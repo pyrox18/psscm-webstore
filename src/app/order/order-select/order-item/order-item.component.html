@@ -14,44 +14,22 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of cart; let i = index">
+      <td>{{item.categoryCode}}</td>
+      <td>{{item.productCode}}</td>
+      <td>{{item.productName}}</td>
+      <td>{{item.bv | number:'1.0-0'}}</td>
+      <td>{{item.price | number:'1.2-2'}}</td>
+      <td>{{item.quantity}}</td>
+      <td>{{item.bv * item.quantity | number:'1.0-0'}}</td>
+      <td>{{item.price * item.quantity | number:'1.2-2'}}</td>
       <td>
-        <select class="form-control" [(ngModel)]="item.categoryCode" name="catCode">
-          <option *ngFor="let code of categoryCodes" [value]="code">{{code}}</option>
-        </select>
-      </td>
-      <td>
-        <select class="form-control" [(ngModel)]="item.productCode" name="prodCode">
-          <option *ngFor="let catItem of catalogMap.get(item.categoryCode)" [value]="catItem.pcode">{{catItem.pcode}}</option>
-        </select>
-      </td>
-      <td>
-        <p class="form-control-static">{{item.productName}}</p>
-      </td>
-      <td>
-        <p class="form-control-static">{{item.bv}}</p>
-      </td>
-      <td>
-        <p class="form-control-static">{{item.price}}</p>
-      </td>
-      <td><input class="form-control" type="number" min="1" [(ngModel)]="item.quantity"></td>
-      <td>
-        <p class="form-control-static" *ngIf="item.quantity">{{item.bv * item.quantity | number:'1.0-0'}}</p>
-      </td>
-      <td>
-        <p class="form-control-static" *ngIf="item.quantity">{{item.price * item.quantity | number:'1.2-2'}}</p>
-      </td>
-      <td>
-        <button class="btn btn-link btn-xs" (click)="delete(i)">
-          <span class="glyphicon glyphicon-remove form-control-static"></span>
-        </button>
+        <a role="button" (click)="delete(i)">
+          <span class="glyphicon glyphicon-remove"></span>
+        </a>
       </td>
     </tr>
-    <tr>
-      <td colspan="9">
-        <button class="btn btn-default" (click)="pushNewItem()">
-          <span class="glyphicon glyphicon-plus"></span> Tambah Produk
-        </button>
-      </td>
+    <tr *ngIf="cart.length < 1">
+      <td colspan="9">Tiada produk yang dipilih lagi!</td>
     </tr>
   </tbody>
   <tfoot>
@@ -65,6 +43,7 @@
       <td>
         <p class="form-control-static">{{totalPrice | number:'1.2-2'}}</p>
       </td>
+      <td></td>
     </tr>
   </tfoot>
 </table>
