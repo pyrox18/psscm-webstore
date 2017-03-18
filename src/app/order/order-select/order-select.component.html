@@ -3,7 +3,7 @@
   <h3>Langkah 1: Tempahan</h3>
   <br>
   <div class="col-md-10">
-    <order-item [cart]="cart" (removeItem)="removeFromCart($event)"></order-item>
+    <cart-table [cart]="cart" (removeItem)="removeFromCart($event)"></cart-table>
     <a role="button" class="btn btn-default pull-right" (click)="onSubmit()">
       <span class="glyphicon glyphicon-circle-arrow-right"></span> Teruskan
     </a>

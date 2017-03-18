@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
-import { OrderItem } from '../../../order-item';
+import { OrderItem } from '../order-item';
 
 @Component({
-  selector: 'order-item',
-  templateUrl: './order-item.component.html',
-  styleUrls: ['./order-item.component.css']
+  selector: 'cart-table',
+  templateUrl: './cart-table.component.html',
+  styleUrls: ['./cart-table.component.css']
 })
-export class OrderItemComponent implements OnChanges {
+export class CartTableComponent implements OnChanges {
 
   @Input() cart: OrderItem[];
   @Output() removeItem: EventEmitter<any> = new EventEmitter<any>();

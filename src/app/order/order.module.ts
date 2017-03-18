@@ -7,7 +7,7 @@ import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 
 import { OrderRoutingModule } from './order-routing.module';
-import { OrderItemComponent } from './order-select/order-item/order-item.component';
+import { CartTableComponent } from '../cart-table/cart-table.component';
 
 @NgModule({
   imports: [
@@ -19,7 +19,7 @@ import { OrderItemComponent } from './order-select/order-item/order-item.compone
     OrderSelectComponent,
     OrderConfirmComponent,
     OrderSuccessComponent,
-    OrderItemComponent
+    CartTableComponent
   ]
 })
 export class OrderModule { }
