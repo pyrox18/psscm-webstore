@@ -22,7 +22,8 @@ export class OrderService {
     let newOrder = {
       "orderId": orderId,
       "user": user,
-      "cart": cart
+      "cart": cart,
+      "status": 0
     }
     orderList.push(newOrder);
     localStorage.setItem("orderList", JSON.stringify(orderList));

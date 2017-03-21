@@ -1,3 +1,12 @@
-<p>
-  order-status works!
-</p>
+<h3>Semak Status Pesanan</h3>
+<div class="form-inline">
+  <p>Sila pilih ID pesanan untuk disemak.</p>
+  <div class="form-group">
+    <label>ID Pesanan</label>
+    <select class="form-control" [(ngModel)]="selectedOrderId">
+      <option *ngFor="let order of orders">{{order.orderId}}</option>
+    </select>
+  </div>
+</div>
+<br>
+<status-details *ngIf="selectedOrderId" [selectedOrderId]="selectedOrderId" [orders]="orders"></status-details>

@@ -1,0 +1,33 @@
+<table class="order-data">
+  <tr>
+    <th>ID Pesanan</th>
+    <td>{{selectedOrder.orderId}}</td>
+  </tr>
+  <tr>
+    <th>Nama Pembeli</th>
+    <td>Ahmad Ali bin Abu</td>
+  </tr>
+  <tr>
+    <th>ID Pembeli</th>
+    <td>{{selectedOrder.user}}</td>
+  </tr>
+</table>
+<form>
+  <div class="payment-proof form-group">
+    <label>Muat naik bukti pembayaran:</label>
+    <input type="file">
+    <br>
+    <button class="btn btn-default" type="submit">
+    <span class="glyphicon glyphicon-upload"></span> Muat Naik
+  </button>
+  </div>
+</form>
+<h4>Status Pesanan</h4>
+<div class="stage-status">
+  <p><span class="label" [class.label-warning]="selectedOrder.status < 1" [class.label-success]="selectedOrder.status >= 1">1</span>Penerimaan bayaran daripada pembeli</p>
+  <p><span class="label" [class.label-default]="selectedOrder.status < 1" [class.label-warning]="selectedOrder.status == 1" [class.label-success]="selectedOrder.status > 1">2</span>Penerimaan stok daripada pembekal</p>
+  <p><span class="label" [class.label-default]="selectedOrder.status < 2" [class.label-warning]="selectedOrder.status == 2" [class.label-success]="selectedOrder.status > 2">3</span>Pengagihan stok kepada wakil kelas</p>
+  <p><span class="label" [class.label-default]="selectedOrder.status < 3" [class.label-warning]="selectedOrder.status == 3" [class.label-success]="selectedOrder.status > 3">4</span>Penyerahan stok kepada pembeli</p>
+</div>
+<h4>Senarai Produk</h4>
+<cart-table [cart]="selectedOrder.cart" [disableDelete]="true"></cart-table>
