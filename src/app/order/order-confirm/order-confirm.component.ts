@@ -3,13 +3,15 @@ import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { CartService } from '../../cart.service';
+import { OrderService } from '../../order.service';
 
 import { OrderItem } from '../../order-item';
 
 @Component({
   selector: 'order-confirm',
   templateUrl: './order-confirm.component.html',
-  styleUrls: ['./order-confirm.component.css']
+  styleUrls: ['./order-confirm.component.css'],
+  providers: [OrderService]
 })
 export class OrderConfirmComponent implements OnInit {
 
@@ -21,7 +23,8 @@ export class OrderConfirmComponent implements OnInit {
     private location: Location,
     private router: Router,
     private route: ActivatedRoute,
-    private cartService: CartService
+    private cartService: CartService,
+    private orderService: OrderService
   ) { }
 
   ngOnInit() {
@@ -34,6 +37,8 @@ export class OrderConfirmComponent implements OnInit {
   }
 
   confirmOrder(): void {
+    this.orderService.submitOrder("testUser", this.cart);
+    this.cartService.clearCart();
     this.router.navigate(['../success'], { relativeTo: this.route });
   }
 
