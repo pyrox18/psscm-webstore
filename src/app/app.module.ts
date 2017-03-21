@@ -5,24 +5,35 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { OrderComponent } from './order/order.component';
+import { OrderSelectComponent } from './order/order-select/order-select.component';
+import { OrderConfirmComponent } from './order/order-confirm/order-confirm.component';
+import { OrderSuccessComponent } from './order/order-success/order-success.component';
 import { OrderStatusComponent } from './order-status/order-status.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { StatusDetailsComponent } from './order-status/status-details/status-details.component';
 
 import { AppRoutingModule } from './app-routing.module';
-import { OrderModule } from './order/order.module';
+import { OrderRoutingModule } from './order/order-routing.module';
+import { CartTableComponent } from './cart-table/cart-table.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     OrderComponent,
+    OrderSelectComponent,
+    OrderConfirmComponent,
+    OrderSuccessComponent,
     OrderStatusComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CartTableComponent,
+    StatusDetailsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    OrderModule,
+    OrderRoutingModule,
     AppRoutingModule
   ],
   providers: [],
