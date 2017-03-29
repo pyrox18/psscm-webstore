@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Http } from '@angular/http';
 
 import { OrderComponent } from './order.component';
+import { CartService } from '../cart.service';
+import { RouterLinkStubDirective, RouterOutletStubComponent } from '../../testing/router-stubs';
+
+let cartServiceStub = {};
+let httpStub = {};
 
 describe('OrderComponent', () => {
   let component: OrderComponent;
@@ -8,7 +14,15 @@ describe('OrderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderComponent ]
+      declarations: [
+        OrderComponent,
+        RouterLinkStubDirective,
+        RouterOutletStubComponent
+      ],
+      providers: [
+        { provide: CartService, useValue: cartServiceStub },
+        { provide: Http, useValue: httpStub }
+      ]
     })
     .compileComponents();
   }));
