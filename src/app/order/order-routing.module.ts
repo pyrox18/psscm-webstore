@@ -5,6 +5,7 @@ import { OrderComponent } from './order.component';
 import { OrderSelectComponent } from './order-select/order-select.component';
 import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
+import { OrderStatusComponent } from '../order-status/order-status.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: 'success',
         component: OrderSuccessComponent
+      },
+      {
+        path: 'status',
+        component: OrderStatusComponent
       },
       {
         path: '',

@@ -15,6 +15,7 @@ import { StatusDetailsComponent } from './order-status/status-details/status-det
 import { AppRoutingModule } from './app-routing.module';
 import { OrderRoutingModule } from './order/order-routing.module';
 import { CartTableComponent } from './cart-table/cart-table.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { CartTableComponent } from './cart-table/cart-table.component';
     OrderStatusComponent,
     PageNotFoundComponent,
     CartTableComponent,
-    StatusDetailsComponent
+    StatusDetailsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

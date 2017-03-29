@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { OrderComponent } from './order/order.component';
+import { LoginComponent } from './login/login.component';
 import { OrderStatusComponent } from './order-status/order-status.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
@@ -11,12 +12,12 @@ const routes: Routes = [
     component: OrderComponent
   },
   {
-    path: 'order-status',
-    component: OrderStatusComponent
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: '',
-    redirectTo: '/order/select',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   {
