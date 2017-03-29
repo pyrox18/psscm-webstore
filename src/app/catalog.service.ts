@@ -10,6 +10,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class CatalogService {
@@ -18,9 +19,10 @@ export class CatalogService {
 
   constructor(private http: Http) { }
 
-  getCatalog(): Observable<any[][]> {
+  getCatalog(): Promise<any[][]> {
     return this.http.get(this.csvUrl)
       .map(this.extractData)
+      .toPromise()
       .catch(this.handleError);
   }
 

@@ -44,7 +44,7 @@ export class OrderSelectComponent implements OnInit {
 
   getCatalog(): void {
     this.catalogService.getCatalog()
-      .subscribe(
+      .then(
         catalog => {
           this.extractCategoryCodes(catalog);
           this.buildCatalog(catalog, this.categoryCodes);
