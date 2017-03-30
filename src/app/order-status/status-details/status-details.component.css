@@ -1,0 +1,18 @@
+.stage-status {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  font-size: 24px;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.stage-status > p {
+  padding-bottom: 1em;
+  font-size: 20px;
+}
+
+.stage-status > p > span {
+  font-size: 24px;
+  font-weight: normal;
+  margin-right: 50px;
+}
