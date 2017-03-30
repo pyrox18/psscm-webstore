@@ -16,6 +16,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { OrderRoutingModule } from './order/order-routing.module';
 import { CartTableComponent } from './cart-table/cart-table.component';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 
 
 @NgModule({
@@ -38,7 +40,10 @@ import { LoginComponent } from './login/login.component';
     OrderRoutingModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

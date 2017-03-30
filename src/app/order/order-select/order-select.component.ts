@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { CatalogService } from '../../catalog.service';
 import { CartService } from '../../cart.service';
+import { AuthService } from '../../auth.service';
 
 import { OrderItem } from '../../order-item';
 
@@ -26,7 +27,8 @@ export class OrderSelectComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private catalogService: CatalogService,
-    private cartService: CartService
+    private cartService: CartService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
