@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'order',
@@ -9,7 +10,10 @@ import { CartService } from '../cart.service';
 })
 export class OrderComponent implements OnInit {
 
-  constructor(private cartService: CartService) { }
+  constructor(
+    private cartService: CartService,
+    private authService: AuthService  
+  ) { }
 
   ngOnInit() {
   }

@@ -1,1 +1,7 @@
+<ul class="nav nav-pills" *ngIf="authService.isLoggedIn">
+  <li routerLinkActive="active"><a routerLink="/order/select">Order</a></li>
+  <li routerLinkActive="active"><a routerLink="/order/status">Semak Status</a></li>
+  <li><a href="#" (click)="logout()">Log Keluar</a></li>
+</ul>
+<br>
 <router-outlet></router-outlet>
