@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { OrderComponent } from './order/order.component';
 import { LoginComponent } from './login/login.component';
-import { OrderStatusComponent } from './order-status/order-status.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
