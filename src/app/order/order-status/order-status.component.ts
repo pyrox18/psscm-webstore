@@ -17,7 +17,14 @@ export class OrderStatusComponent implements OnInit {
   ngOnInit() {
     this.orderService.getOrders("testUser")
       .subscribe(
-        orders => this.orders = orders,
+        orders => {
+          if (orders.length > 0) {
+            this.orders = orders;
+          }
+          else {
+            this.orders = null;
+          }
+        },
         err => console.error(err)
       )
       .unsubscribe();

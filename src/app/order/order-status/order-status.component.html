@@ -1,5 +1,5 @@
 <h3>Semak Status Pesanan</h3>
-<div class="form-inline">
+<div class="form-inline" *ngIf="orders; else noOrders">
   <p>Sila pilih ID pesanan untuk disemak.</p>
   <div class="form-group">
     <label>ID Pesanan</label>
@@ -8,5 +8,8 @@
     </select>
   </div>
 </div>
+<ng-template #noOrders>
+  <p>Anda tiada pesanan untuk disemak.</p>
+</ng-template>
 <br>
 <status-details *ngIf="selectedOrderId" [selectedOrderId]="selectedOrderId" [orders]="orders"></status-details>

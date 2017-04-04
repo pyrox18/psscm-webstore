@@ -33,9 +33,11 @@ export class OrderService {
     let orderList: any[] = JSON.parse(localStorage.getItem("orderList"));
     let userOrders: any[] = [];
 
-    for (let order of orderList) {
-      if (order.user == user) {
-        userOrders.push(order);
+    if (orderList) {
+      for (let order of orderList) {
+        if (order.user == user) {
+          userOrders.push(order);
+        }
       }
     }
 
