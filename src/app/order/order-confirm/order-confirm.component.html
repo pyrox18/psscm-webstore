@@ -1,7 +1,7 @@
 <h3>Langkah 2: Pengesahan</h3>
 <h5>Sila pastikan bahawa produk-produk berikut adalah produk yang ingin anda pesan untuk pembelian.</h5>
 <br>
-<cart-table [cart]="cart" [disableDelete]="true"></cart-table>
+<cart-table [cart]="this.cartService.cart" [disableDelete]="true"></cart-table>
 <p>Adakah anda pasti dengan pesanan ini? Klik "Sahkan Pesanan" untuk meletakkan pesanan atau "Kembali" untuk mengubahsuai pesanan
   anda.</p>
 <div class="inline-btn-right">

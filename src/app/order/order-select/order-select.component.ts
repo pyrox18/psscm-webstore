@@ -86,23 +86,24 @@ export class OrderSelectComponent implements OnInit {
   }
 
   removeFromCart(i: number): void {
-    this.cart.splice(i, 1);
-    // Rebuild itemsInCart map
-    this.itemsInCart.clear();
-    for (let j = 0; j < this.cart.length; j++) {
-      let item = new OrderItem(this.cart[j].categoryCode, this.cart[j].productCode);
-      this.itemsInCart.set(JSON.stringify(item), j);
-    }
-    this.cart = this.cart.slice(); // cd workaround
+    // this.cart.splice(i, 1);
+    // // Rebuild itemsInCart map
+    // this.itemsInCart.clear();
+    // for (let j = 0; j < this.cart.length; j++) {
+    //   let item = new OrderItem(this.cart[j].categoryCode, this.cart[j].productCode);
+    //   this.itemsInCart.set(JSON.stringify(item), j);
+    // }
+    // this.cart = this.cart.slice(); // cd workaround
+    this.cartService.removeItem(i);
   }
 
   getCartInMemory(user: string): void {
-    this.cartService.getCart(user)
-      .subscribe(
-        cart => this.cart = cart,
-        error => console.error("Cart retrieval failed. Error: " + error)
-      )
-      .unsubscribe();
+    this.cartService.getCart(user);
+      // .subscribe(
+      //   cart => this.cart = cart,
+      //   error => console.error("Cart retrieval failed. Error: " + error)
+      // )
+      // .unsubscribe();
   }
 
   categoryCodeChanged(): void {
@@ -129,17 +130,19 @@ export class OrderSelectComponent implements OnInit {
   }
 
   addItemToCart(): void {
-    let existingItemIndex = this.itemsInCart.get(JSON.stringify(new OrderItem(this.item.categoryCode, this.item.productCode)));
-    if (existingItemIndex !== undefined) {
-      this.cart[existingItemIndex].quantity += this.item.quantity;
-    }
-    else {
-      this.cart.push(this.item);
-      this.itemsInCart.set(JSON.stringify(new OrderItem(this.item.categoryCode, this.item.productCode)), this.cart.length - 1);
-    }
+    // let existingItemIndex = this.itemsInCart.get(JSON.stringify(new OrderItem(this.item.categoryCode, this.item.productCode)));
+    // if (existingItemIndex !== undefined) {
+    //   this.cart[existingItemIndex].quantity += this.item.quantity;
+    // }
+    // else {
+    //   this.cart.push(this.item);
+    //   this.itemsInCart.set(JSON.stringify(new OrderItem(this.item.categoryCode, this.item.productCode)), this.cart.length - 1);
+    // }
+    
+    // this.cart = this.cart.slice(); // cd workaround
+    this.cartService.addItem(this.item);
     this.item = new OrderItem();
     this.item.quantity = 1;
-    this.cart = this.cart.slice(); // cd workaround
   }
 
 }
